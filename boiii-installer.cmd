@@ -13,6 +13,7 @@ if  exist .\t7_full_game\boiii.exe (
 if not exist .\t7_full_game\ (mkdir t7_full_game)
 if not exist .\t7_full_game\boiii.exe (
 	aria2c --download-result=hide  --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error --dir=.\t7_full_game "https://web.archive.org/web/20230629141934/https://cdn.discordapp.com/attachments/700527387376353330/1121115413925871716/boiii.exe"
+	echo.
 	echo ! == The launcher has been downloaded !
 )
 echo.
@@ -55,6 +56,7 @@ if not exist ".\t7_full_game.torrent" (
 	aria2c --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error "https://web.archive.org/web/20230629141953/https://reactiongaming.us/community/attachments/t7_full_game-torrent.1119/?hash=9e32d123bf2a6b96e23a3e6935deffd2"
 )
 echo.
+echo Downloading game files!
 aria2c --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
 echo The game has been installed!
 echo.
