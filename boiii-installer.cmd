@@ -57,7 +57,7 @@ if not exist ".\t7_full_game.torrent" (
 )
 echo.
 echo Downloading game files!
-aria2c --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
+aria2c -s16 -x16 --file-allocation=trunc --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
 echo The game has been installed!
 echo.
 echo.
