@@ -31,7 +31,7 @@ echo.
 echo ! ===== Installing client resources !
 echo.
 if not exist "%HOMEDRIVE%%HOMEPATH%\AppData\Local\boiii\" (
-	echo Expand-Archive -Force "%cd%\boiii.zip" "%HOMEDRIVE%%HOMEPATH%\AppData\Local\boiii\" >%temp%\extracttemp.ps1
+	echo Expand-Archive -Force "%cd%\boiii.zip" "%HOMEDRIVE%%HOMEPATH%\AppData\Local\" >%temp%\extracttemp.ps1
 	powershell Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 	powershell -file  %temp%\extracttemp.ps1
 	powershell Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope CurrentUser
@@ -57,7 +57,7 @@ if not exist ".\t7_full_game.torrent" (
 )
 echo.
 echo Downloading game files!
-aria2c -s16 -x16 --file-allocation=trunc --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
+aria2c --seed-time=0 -s16 -x16 --file-allocation=trunc --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
 echo The game has been installed!
 echo.
 echo.
@@ -68,6 +68,4 @@ del t7_full_game.torrent >nul
 del t7_full_game.aria2 >nul
 echo Clean-up finished!!, auto closing...
 echo.
-ping local host -n 10 >nul
-
-
+ping localhost -n 10 >nul

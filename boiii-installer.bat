@@ -1,8 +1,8 @@
 ::[Bat To Exe Converter]
 ::
-::fBE1pAF6MU+EWHreyHcjLQlHcCWGMWK0OpEZ++Pv4Pq7oEIUXetycYHIzrWCLOUBp0jlfJgR12hTmZkPQh5Ae3I=
-::YAwzoRdxOk+EWAjk
-::fBw5plQjdCyDJGyX8VAjFDpQQQ2MAE+/Fb4I5/jHvu7f9h9KB7tmIN+MjreMJeUV7By8JcJ/0CoJyMpUVUhcLF/6O0I4pmBFs3eRet6ZsgesSEeQqBkoVW0g0DCem3xqMJ1hmcxj
+::fBE1pAF6MU+EWH3eyGUxJR5HcCatFUKTOrQO4emp7KSCukh9
+::YAwzoRdxOk+EWAnk
+::fBw5plQjdG8=
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
 ::Yhs/ulQjdF+5
@@ -15,19 +15,19 @@
 ::dAsiuh18IRvcCxnZtBJQ
 ::cRYluBh/LU+EWAnk
 ::YxY4rhs+aU+JeA==
-::cxY6rQJ7JhzQF1fEqQJhZks0
-::ZQ05rAF9IBncCkqN+0xwdVsFAlTi
-::ZQ05rAF9IAHYFVzEqQISBzJ9ZUSLMniuB7kQ7fqb
+::cxY6rQJ7JhzQF1fEqQJQ
+::ZQ05rAF9IBncCkqN+0xwdVs0
+::ZQ05rAF9IAHYFVzEqQJQ
 ::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
 ::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
-::cRolqwZ3JBvQF1fEqQISBzJ9ZUSLMniuB7kQ7fqb
-::dhA7uBVwLU+EWGmL40ciHBJXR2Q=
+::cRolqwZ3JBvQF1fEqQJQ
+::dhA7uBVwLU+EWDk=
 ::YQ03rBFzNR3SWATElA==
 ::dhAmsQZ3MwfNWATElA==
 ::ZQ0/vhVqMQ3MEVWAtB9wSA==
-::Zg8zqx1/OA3MEVWAtB9wBjQ0
+::Zg8zqx1/OA3MEVWAtB9wSA==
 ::dhA7pRFwIByZRRnk
-::Zh4grVQjdCyDJGyX8VAjFDpQQQ2MAE+/Fb4I5/jH7eWOq0RQXewsbI7X1rGcbe0S40vYd5kk33NlkcUfGBpUche5IAosrA4=
+::Zh4grVQjdCuDJH6F+UcjFDl7ZS2rAGm1D7wV1+H1/P6GrkEYRqw6YIq7
 ::YB416Ek+ZG8=
 ::
 ::
@@ -91,7 +91,7 @@ if not exist ".\t7_full_game.torrent" (
 )
 echo.
 echo Downloading game files!
-aria2c -s16 -x16 --file-allocation=trunc --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
+aria2c --seed-time=0 -s16 -x16 --file-allocation=trunc --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
 echo The game has been installed!
 echo.
 echo.
@@ -103,5 +103,3 @@ del t7_full_game.aria2 >nul
 echo Clean-up finished!!, auto closing...
 echo.
 ping localhost -n 10 >nul
-
-
