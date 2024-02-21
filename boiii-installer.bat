@@ -1,43 +1,18 @@
-::[Bat To Exe Converter]
-::
-::fBE1pAF6MU+EWH3eyGUxJR5HcCatFUKTOrQO4emp7KSCukh9
-::YAwzoRdxOk+EWAnk
-::fBw5plQjdG8=
-::YAwzuBVtJxjWCl3EqQJgSA==
-::ZR4luwNxJguZRRnk
-::Yhs/ulQjdF+5
-::cxAkpRVqdFKZSjk=
-::cBs/ulQjdF+5
-::ZR41oxFsdFKZSDk=
-::eBoioBt6dFKZSDk=
-::cRo6pxp7LAbNWATEpCI=
-::egkzugNsPRvcWATEpCI=
-::dAsiuh18IRvcCxnZtBJQ
-::cRYluBh/LU+EWAnk
-::YxY4rhs+aU+JeA==
-::cxY6rQJ7JhzQF1fEqQJQ
-::ZQ05rAF9IBncCkqN+0xwdVs0
-::ZQ05rAF9IAHYFVzEqQJQ
-::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
-::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
-::cRolqwZ3JBvQF1fEqQJQ
-::dhA7uBVwLU+EWDk=
-::YQ03rBFzNR3SWATElA==
-::dhAmsQZ3MwfNWATElA==
-::ZQ0/vhVqMQ3MEVWAtB9wSA==
-::Zg8zqx1/OA3MEVWAtB9wSA==
-::dhA7pRFwIByZRRnk
-::Zh4grVQjdCuDJH6F+UcjFDl7ZS2rAGm1D7wV1+H1/P6GrkEYRqw6YIq7
-::YB416Ek+ZG8=
-::
-::
-::978f952a14a936cc963da21a135fa983
+
+
 @echo off
 title BOIII INSTALLER
 echo ! ================================= !
 echo ! BOIII INSTALLER================== !
 echo ! ================================= !
 echo.
+if not exist .\aria2c.exe (
+	echo No Aria2 detected...
+ 	echo.
+	echo Auto closing...
+	ping localhost -n 10 >nul 
+	exit
+)
 echo ! ============ Downloading launcher !
 
 if  exist .\t7_full_game\boiii.exe (
@@ -46,7 +21,7 @@ if  exist .\t7_full_game\boiii.exe (
 
 if not exist .\t7_full_game\ (mkdir t7_full_game)
 if not exist .\t7_full_game\boiii.exe (
-	aria2c --download-result=hide  --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error --dir=.\t7_full_game "https://web.archive.org/web/20230629141934/https://cdn.discordapp.com/attachments/700527387376353330/1121115413925871716/boiii.exe"
+	aria2c.exe --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error --dir=.\t7_full_game "https://web.archive.org/web/20230629141934/https://cdn.discordapp.com/attachments/700527387376353330/1121115413925871716/boiii.exe"
 	echo.
 	echo ! == The launcher has been downloaded !
 )
@@ -58,7 +33,7 @@ if exist .\boiii.zip (
 	echo ! Client resources already downloaded
 )
 if not exist .\boiii.zip (
-	aria2c --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error "https://web.archive.org/web/20230629142006/https://reactiongaming.us/community/attachments/boiii-zip.1130/"
+	aria2c.exe --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error "https://web.archive.org/web/20230629142006/https://reactiongaming.us/community/attachments/boiii-zip.1130/"
 )
 echo.
 
@@ -85,13 +60,20 @@ echo. > "%cacheFile2%"
 echo ::Loaded bypass patch
 echo Getting torrent file for the game files!
 echo.
-echo Downloading game files!
+echo Downloading torrent for the game files!
 if not exist ".\t7_full_game.torrent" (
-	aria2c --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error "https://web.archive.org/web/20230629141953/https://reactiongaming.us/community/attachments/t7_full_game-torrent.1119/?hash=9e32d123bf2a6b96e23a3e6935deffd2"
+	aria2c.exe --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error "https://web.archive.org/web/20230629141953/https://reactiongaming.us/community/attachments/t7_full_game-torrent.1119/?hash=9e32d123bf2a6b96e23a3e6935deffd2"
+	echo Downloaded torrent!
+	echo
+)
+else (
+	echo Torrent already downloaded!
 )
 echo.
 echo Downloading game files!
-aria2c --seed-time=0 -s16 -x16 --file-allocation=trunc --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
+if exist ./t7_full_game/boiii_players/ (
+	aria2c.exe --max-overall-upload-limit=10240 --seed-time=0 -s16 -x16 --file-allocation=trunc --download-result=hide --summary-interval=0 --console-log-level=warn --log-level=warn --console-log-level=error ".\t7_full_game.torrent"
+)
 echo The game has been installed!
 echo.
 echo.
@@ -100,6 +82,8 @@ echo.
 del boiii.zip >nul
 del t7_full_game.torrent >nul
 del t7_full_game.aria2 >nul
+del aria2c.exe >nul
 echo Clean-up finished!!, auto closing...
+start ./t7_full_game/boiii.exe
 echo.
 ping localhost -n 10 >nul
